@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
@@ -15,16 +17,52 @@ class JavafakerApplicationTests {
     private PersonService personService;
 
     @Test
-    void contextLoads() {
+    void createPersonServiceTest() {
+        personService.createPerson();
+
+        List<PersonDto> persons = personService.listPersons();
+
+        assertThat(persons.size()).isEqualTo(1);
+        assertThat(persons.get(0).getLastName()).isNotEmpty();
+        assertThat(persons.get(0).getEmail()).isNotEmpty();
+
+        personService.createPerson();
+
+        persons = personService.listPersons();
+
+        assertThat(persons.size()).isEqualTo(2);
+
+        personService.clearPersons();
+
+        persons = personService.listPersons();
+
+        assertThat(persons.size()).isEqualTo(0);
     }
 
     @Test
-    void getPersonServiceTest() {
-        PersonDto personDto = personService.getPerson(1L);
+    void createPersonWithIdServiceTest() {
+        personService.createPersonWithId(1L);
 
-        assertThat(personDto.getId()).isEqualTo(1L);
-        assertThat(personDto.getLastName()).isEqualTo("Adamos");
-        assertThat(personDto.getEmail()).isEqualTo("adamos@mail.cz");
+        List<PersonDto> persons = personService.listPersons();
+
+        assertThat(persons.size()).isEqualTo(1);
+        assertThat(persons.get(0).getId()).isEqualTo(1L);
+        assertThat(persons.get(0).getLastName()).isNotEmpty();
+        assertThat(persons.get(0).getEmail()).isNotEmpty();
+
+        personService.createPersonWithId(2L);
+
+        persons = personService.listPersons();
+
+        assertThat(persons.size()).isEqualTo(2);
+        assertThat(persons.get(0).getId()).isEqualTo(1L);
+        assertThat(persons.get(1).getId()).isEqualTo(2L);
+
+        personService.clearPersons();
+
+        persons = personService.listPersons();
+
+        assertThat(persons.size()).isEqualTo(0);
     }
 
 }
