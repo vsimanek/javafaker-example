@@ -2,6 +2,9 @@ package cz.vsimanek.examples.javafaker.dto;
 
 import java.util.Date;
 
+/**
+ * Class representation of person and his data attributes.
+ */
 public class PersonDto {
 
     private Long id;

@@ -44,6 +44,13 @@ public class PersonServiceImpl implements PersonService {
         persons.clear();
     }
 
+    /**
+     * Method that creates Person object and push it to list of Persons. Method also checks if given ID is already
+     * in list of Persons. If not than takes given ID. If given ID is null than Faker will randomly generates one.
+     *
+     * @param id if user gives ID that he wants than method will use it
+     * @return created Person object that is already in persons list.
+     */
     private PersonDto createPersonDto(Long id) {
         Faker faker = new Faker();
 
@@ -69,6 +76,12 @@ public class PersonServiceImpl implements PersonService {
         return personDto;
     }
 
+    /**
+     * Help method for checking if person ID is already in list.
+     *
+     * @param personId ID that gives user or is randomly generated.
+     * @return true if given ID is already in list.
+     */
     private boolean matchPersonId(Long personId) {
         return persons.stream().anyMatch(personDto -> personDto.getId().equals(personId));
     }

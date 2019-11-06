@@ -1,5 +1,8 @@
 package cz.vsimanek.examples.javafaker.dto;
 
+/**
+ * Simple class representation of return object with quote attribute.
+ */
 public class QuoteDto {
 
     private String quote;

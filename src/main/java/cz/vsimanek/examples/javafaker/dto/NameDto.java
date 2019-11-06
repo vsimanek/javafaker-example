@@ -1,5 +1,8 @@
 package cz.vsimanek.examples.javafaker.dto;
 
+/**
+ * Simple class representation of return object with name attribute.
+ */
 public class NameDto {
 
     private String name;

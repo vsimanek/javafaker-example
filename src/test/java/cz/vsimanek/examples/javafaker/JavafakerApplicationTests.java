@@ -16,6 +16,9 @@ class JavafakerApplicationTests {
     @Autowired
     private PersonService personService;
 
+    /**
+     * Simple example test for creating person without given ID.
+     */
     @Test
     void createPersonServiceTest() {
         personService.createPerson();
@@ -39,6 +42,9 @@ class JavafakerApplicationTests {
         assertThat(persons.size()).isEqualTo(0);
     }
 
+    /**
+     * Simple example test for creating person with given ID.
+     */
     @Test
     void createPersonWithIdServiceTest() {
         personService.createPersonWithId(1L);
